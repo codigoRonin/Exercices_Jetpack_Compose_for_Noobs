@@ -25,20 +25,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun Ejercicio_02() {
+fun Ejercicio_02B() {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(8.dp)
     ) {
-        Header(Modifier.align(Alignment.TopCenter))
-        Body(Modifier.align(Alignment.Center))
-        Footer(Modifier.align(Alignment.BottomCenter))
+        Header_02B(Modifier.align(Alignment.TopCenter))
+        Body_02B(Modifier.align(Alignment.Center))
+        Footer_02B(Modifier.align(Alignment.BottomCenter))
     }
 }
 
 @Composable
-fun Header(modifier: Modifier) {
+fun Header_02B(modifier: Modifier) {
     Text(
         text = "REGISTRO",
         fontWeight = FontWeight.Bold,
@@ -48,39 +48,50 @@ fun Header(modifier: Modifier) {
 }
 
 @Composable
-fun Body(modifier: Modifier) {
+fun Body_02B(modifier: Modifier) {
     Column(modifier = modifier) {
 
         var name by rememberSaveable { mutableStateOf("") }
         var surname by rememberSaveable { mutableStateOf("") }
 
-        OutlinedTextField(
-            value = name,
-            onValueChange = { name = it },
-            label = { Text("Nombre") },
-            placeholder = { Text("Introduce tu nombre") },
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.Black, focusedLabelColor = Color.Black
-            )
-        )
-
+        UserName_02B(name = name, onTextChange = { name = it })
         Spacer(modifier = Modifier.height(16.dp))
+        UserSurname_02B(surname = surname, onTextChange = {surname = it})
 
-        OutlinedTextField(
-            value = surname,
-            onValueChange = { surname = it },
-            label = { Text("Apellidos") },
-            placeholder = { Text("Introduce tus apellidos") },
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.Black, focusedLabelColor = Color.Black
-            )
-        )
     }
 
 }
 
 @Composable
-fun Footer(modifier: Modifier) {
+fun UserName_02B(name: String, onTextChange: (String) -> Unit) {
+
+    OutlinedTextField(
+        value = name,
+        onValueChange = { onTextChange(it) },
+        label = { Text("Nombre") },
+        placeholder = { Text("Introduce tu nombre") },
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = Color.Black, focusedLabelColor = Color.Black
+        )
+    )
+}
+
+@Composable
+fun UserSurname_02B(surname: String, onTextChange: (String) -> Unit) {
+
+    OutlinedTextField(
+        value = surname,
+        onValueChange = { onTextChange(it) },
+        label = { Text("Apellidos") },
+        placeholder = { Text("Introduce tus apellidos") },
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = Color.Black, focusedLabelColor = Color.Black
+        )
+    )
+}
+
+@Composable
+fun Footer_02B(modifier: Modifier) {
     Text(
         text = "Copyright IES Tubalcaín - 2023",
         fontWeight = FontWeight.Light,
